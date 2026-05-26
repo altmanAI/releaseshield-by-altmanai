@@ -8,7 +8,7 @@ ReleaseShield helps teams ship software with confidence by scanning for risk bef
 
 **Core principle**: Humanity leads. Intelligence follows.
 
-## v0.1 Scope (Honest)
+## v0.1 Scope
 
 ReleaseShield v0.1 focuses on five scan categories:
 
