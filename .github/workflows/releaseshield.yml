@@ -1,1 +1,26 @@
-
+name: ReleaseShield R&D checks
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GOTOOLCHAIN: local
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2; verify pin before publishing
+        with:
+          persist-credentials: false
+      - name: Check Go toolchain and formatting
+        run: |
+          go version
+          test -z "$(gofmt -l cmd internal)"
+      - name: Test and build
+        run: |
+          go vet ./...
+          go test -race ./...
+          go build ./...
